@@ -1,0 +1,29 @@
+# OmegaMart .gitignore
+target/
+*.war
+*.jar
+*.class
+
+# Persistent database storage
+data/
+*.mv.db
+*.trace.db
+
+# IDE configuration
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets & Local Overrides
+.env
+local.properties
+
+# Logs
+*.log

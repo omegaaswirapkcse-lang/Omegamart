@@ -1,0 +1,31 @@
+name: OmegaMart CI Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven and Run Automated Tests
+        run: mvn clean verify --batch-mode
+
+      - name: Execute Checkstyle Inspection
+        run: mvn checkstyle:check --batch-mode
+
+      - name: Execute SpotBugs Analysis
+        run: mvn spotbugs:check --batch-mode
